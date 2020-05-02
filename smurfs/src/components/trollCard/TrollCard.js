@@ -12,11 +12,12 @@ import {
 import { connect } from "react-redux";
 import { trollCardActions } from "../../store/actions/trollCardActions";
 import { fetchPexelImage } from "../../store/actions/pexelAction";
+import { deteteTroll } from "../../store/actions/deleteAction"
 
 function TrollCard(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("data", data);
+
   useEffect(() => {
     props.trollCardActions();
   }, []);
@@ -24,6 +25,10 @@ function TrollCard(props) {
   useEffect(() => {
     props.fetchPexelImage();
   }, []);
+
+  // useEffect(() => {
+  //   props.deteteTroll()
+  // }, [])
 
   useEffect(() => {
     Axios.get("http://localhost:3333/smurfs")
@@ -33,7 +38,7 @@ function TrollCard(props) {
       })
       .then(setIsLoading(false))
       .catch((err) => console.error(err));
-  }, []);
+  }, [props.name]);
 
   //WE need to make an axios call here in order to get Data from server, render eard.
 
@@ -47,7 +52,7 @@ function TrollCard(props) {
         ) : (
           data.map((item) => {
             return (
-              <Card key={item.id} style={{ margin: "5% 5%" }}>
+              <Card key={item.id} style={{ margin:"20px 0", width:"200px" } }>
                 <Image src={props.trollImage} wrapped ui={false} />
                 <Card.Content>
                   <Card.Header>{item.name}</Card.Header>
@@ -61,7 +66,7 @@ function TrollCard(props) {
                   </a>
                 </Card.Content>
                 <Card.Content extra>
-                  <Button size="tiny" color="red">
+                  <Button size="tiny" color="red" onClick={deteteTroll(item.id)}>
                     Delete
                   </Button>
                 </Card.Content>
@@ -70,6 +75,7 @@ function TrollCard(props) {
           })
         )}
       </Container>
+      
     </>
   );
 }
@@ -85,6 +91,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { trollCardActions, fetchPexelImage })(
+export default connect(mapStateToProps, { trollCardActions, fetchPexelImage, deteteTroll })(
   TrollCard
 );

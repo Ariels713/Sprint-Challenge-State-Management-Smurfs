@@ -4,6 +4,10 @@ export const TROLL_FORM_POST_REQUEST_START = "TROLL_FORM_POST_REQUEST_START";
 export const TROLL_FORM_POST_FAIL = "TROLL_FORM_POST_FAIL";
 export const TROLL_FORM_POST_SUCCESS = "TROLL_FORM_POST_SUCCESS";
 
+export const FETCH_PEXEL_IMAGE_START = "FETCH_PEXEL_IMAGE_START";
+export const FETCH_PEXEL_IMAGE_FAIL = "FETCH_PEXEL_IMAGE_FAIL";
+export const FETCH_PEXEL_IMAGE_SUCCESS = "FETCH_PEXEL_IMAGE_SUCCESS"
+
 export const trollsPostAction = (formData) => {
     return (dispatch) => {
         dispatch({type:TROLL_FORM_POST_REQUEST_START})
