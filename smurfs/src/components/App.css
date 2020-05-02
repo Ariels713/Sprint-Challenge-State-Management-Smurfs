@@ -1,3 +1,32 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap');
+
+/* .App {
+  
+} */
+
+.welcome {
   text-align: center;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  font-size: 4.688rem;
+  background: -webkit-linear-gradient(rgb(53, 144, 230), rgb(231, 81, 81));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header_sub_content {
+  text-align: center;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  font-size: 2.344rem;
+  background: -webkit-linear-gradient(rgb(231, 81, 81), rgb(53, 144, 230));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form_style {
+  margin: 0 auto;
+  width: 750px;
+}
+
+.card_Style {
+  margin-left: 100px;
 }
