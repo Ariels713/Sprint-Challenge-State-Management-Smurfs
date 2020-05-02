@@ -2,22 +2,20 @@ import React, { useState } from "react";
 import { Form, Button, Select } from "semantic-ui-react";
 import { selectOptions, heightSelectOption } from "./selectFormValues";
 import { connect } from 'react-redux' 
-import { trollFormResults } from '../../store/actions/formActions'
+import { trollsPostAction } from '../../store/actions/trollPostAction'
 
 function CreateTrollForm(props) {
-  const [trollName, setTrollName] = useState("");
-  const [trollAge, setTrollAge] = useState("");
-  const [trollHeight, setTrollHeight] = useState("");
-  const [trollDescription, setTrollDescription] = useState("");
+  const [name, setname] = useState("");
+  const [age, setage] = useState("");
+  const [height, setheight] = useState("");
+  const [description, setdescription] = useState("");
 
-  console.log("FROM FROM CREATOR", trollName, trollAge, trollHeight, trollDescription)
-  
     const handleSubmit = (event) => {
       event.preventDefault();
-      props.trollFormResults({trollName,trollAge,trollHeight})
-    //   setTrollName("")
-    //   setTrollAge("")
-    //   setTrollHeight("")
+      props.trollsPostAction({name,age,height})
+    //   setname("")
+    //   setage("")
+    //   setheight("")
     };
 
   return (
@@ -28,9 +26,9 @@ function CreateTrollForm(props) {
           label="Troll Name"
           type="text"
           placeholder="What's your Trolls name?"
-          name="trollName"
-          onChange={(event) => setTrollName(event.target.value)}
-          value={trollName.name}
+          name="name"
+          onChange={(event) => setname(event.target.value)}
+          value={name.name}
           width={6}
         />
         <Form.Select
@@ -39,9 +37,9 @@ function CreateTrollForm(props) {
           label="How old is your Troll?"
           options={selectOptions}
           placeholder="Age"
-          name="trollAge"
-          onChange={(event, { value }) => setTrollAge(value)}
-          value={trollAge}
+          name="age"
+          onChange={(event, { value }) => setage(value)}
+          value={age}
           width={5}
         />
         <Form.Select
@@ -50,9 +48,9 @@ function CreateTrollForm(props) {
           label="How tall is your Troll?"
           options={heightSelectOption}
           placeholder="Height"
-          name="trollHeight"
-          onChange={(event, { value }) => setTrollHeight(value)}
-          value={trollHeight}
+          name="height"
+          onChange={(event, { value }) => setheight(value)}
+          value={height}
           width={5}
         />
       </Form.Group>
@@ -61,24 +59,35 @@ function CreateTrollForm(props) {
             width={16}
             label="Tell About Your Troll!"
             placeholder="Description"
-            name="trollDescription"
-            onChange={(event) => setTrollDescription(event.target.value)}
-            value={trollDescription}
+            name="description"
+            onChange={(event) => setdescription(event.target.value)}
+            value={description}
         />
       </Form.Group>
+      {
+        props.isSubmitting ? (
+          <Button loading type="submit" color="yellow">
+          Troll Creator!
+        </Button>          
+        ) : (
       <Button type="submit" color="yellow">
         Troll Creator!
       </Button>
+
+        )
+      }
     </Form>
   );
 }
 
 const mapPropstoState = (state) => {
     return {
-        name: state.name,
-        age: state.age,
-        height: state.height,
+        name: state.formReducer.name,
+        age: state.formReducer.age,
+        height: state.formReducer.height,
+        description:state.formReducer.description,
+        isSubmitting:state.formReducer.isSubmitting
     }
 }
 
-export default connect(mapPropstoState,{trollFormResults})(CreateTrollForm);
+export default connect(mapPropstoState,{trollsPostAction})(CreateTrollForm);

@@ -2,12 +2,13 @@ const initialState = {
     isLoading:false,
     trollImage:"",
     imageAlt:"",
-    trollName:"",
-    trollAge:"",
-    trollHeight:""
+    name:"",
+    age:"",
+    height:""
 }
 
 export const trollCardReducer = (state = initialState, action) => {
+
     switch(action.type){
         case "FETCH_TROLL_DATA_START" :
             return {
@@ -18,14 +19,13 @@ export const trollCardReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                // trollName: action.payload[0].name,
-                trollName:[action.payload.map((item) => {
+                name:[action.payload.map((item) => {
                     return item.name
                 })],
-                trollHeight:[action.payload.map((item) => {
+                height:[action.payload.map((item) => {
                    return  item.height
                 })],
-                trollAge:[action.payload.map((item) => {
+                age:[action.payload.map((item) => {
                     return  item.height
                  })],
             }
