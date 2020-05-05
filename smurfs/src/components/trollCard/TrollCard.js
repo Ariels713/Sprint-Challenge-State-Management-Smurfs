@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { trollCardActions } from "../../store/actions/trollCardActions";
 import { fetchPexelImage } from "../../store/actions/pexelAction";
 import { deteteTroll } from "../../store/actions/deleteAction"
+import { trollsPostAction } from '../../store/actions/trollPostAction'
 
 function TrollCard(props) {
   const [data, setData] = useState([]);
@@ -66,7 +67,7 @@ function TrollCard(props) {
                   </a>
                 </Card.Content>
                 <Card.Content extra>
-                  <Button size="tiny" color="red" onClick={deteteTroll(item.id)}>
+                  <Button size="tiny" color="red" onClick={deteteTroll(item.id )}>
                     Delete
                   </Button>
                 </Card.Content>
@@ -91,6 +92,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { trollCardActions, fetchPexelImage, deteteTroll })(
+export default connect(mapStateToProps, { trollCardActions, fetchPexelImage, deteteTroll, trollsPostAction })(
   TrollCard
 );

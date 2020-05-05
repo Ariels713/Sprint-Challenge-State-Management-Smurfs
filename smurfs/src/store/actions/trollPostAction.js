@@ -22,6 +22,7 @@ export const trollsPostAction = (formData) => {
         .then(res => {
             dispatch({type:TROLL_FORM_POST_SUCCESS, payload:formData})
         })
+        
         .catch(err => console.log(err))
     }
 }
